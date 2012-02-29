@@ -1,0 +1,26 @@
+#!/bin/bash
+# erepbattle - set Xdialog at a time
+
+usage() {
+cat<<EOT
+Usage: $(basename $0) <time>
+EOT
+exit
+}
+test $# -eq 0 && { echo "Missing argument"; usage; }
+
+HEURE=$@
+
+# add now if it's a relative time 
+test ${HEURE:0:1} == '+' && HEURE="now $HEURE"
+
+BIN="Xdialog --fixed-font --textbox "
+FILETXT="$(dirname $0)/erepbattle_txt"
+SOUND=sound_airraid.sh
+
+
+
+echo "at $HEURE <<< $SOUND ; DISPLAY=$DISPLAY $BIN $FILETXT 0 0 "
+at $HEURE <<< "$SOUND ; DISPLAY=$DISPLAY $BIN $FILETXT 0 0 "
+
+# vim: nospell

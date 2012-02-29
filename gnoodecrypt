@@ -1,0 +1,24 @@
+#!/bin/bash
+# tranform number to ASCII character
+
+if test "$#" -eq 0
+then
+    echo "Usage: $(basename $0) <number> <number> ..." 1>&2
+    exit 0
+fi
+
+
+# convert decimal int to ASCII character
+function chr {
+    local val=$(printf "%x" "${1?missing decimal value}")   # convert dec to hexa
+    printf "\x$val"                                         # print with hexa value
+}
+
+while test "$#" -gt 0
+do
+    n="$1"
+    (( n1 = $n + 96)) ## begin with 1=a
+    chr $n1
+    shift
+done
+echo

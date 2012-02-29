@@ -1,0 +1,43 @@
+#1!/bin/bash
+
+usage() {
+    cat <<EOT
+Usage: $(basename $0) <etape> <niveau bas> <niveau haut>
+
+Affiche les <etape> barreaux entre les 2 niveaux de haut en bas.
+
+EOT
+}
+
+spaces() {
+    # print x spaces before $1
+    local ii="          $1"
+    echo "${ii: -5}"
+}
+
+test $# -eq 0 && { usage; exit; }
+
+test $# -ne 3 && { echo "Error: missing arguments"; usage; exit 1; }
+
+etape=$1
+bas="${2}"
+haut="${3}"
+
+test "$etape" -ge 1 || { echo "Error: etape doit etre > 1"; exit 1; }
+test "$haut" -gt "$bas" || { echo "Error: niveau bas doit etre > niveau hait"; exit 1; }
+
+(( step = ($haut-$bas)/$etape ))
+
+echo "Echelle en $1 etapes, de $haut a $bas"
+
+(( i=$haut-$step ))
+j=1
+
+echo "$(spaces $haut) -"
+while test $i -gt $bas
+do
+    echo "$(spaces $i) : couleur $j"
+    (( i-=$step ))
+    (( j++ ))
+done
+echo "$(spaces $i) -"

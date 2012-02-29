@@ -1,0 +1,14 @@
+#!/bin/bash
+# tranform character to number (a=1, b=2 ...)
+
+if test "$#" -eq 0
+then
+    echo "Usage: $(basename $0) <character> <character> ..." 1>&2
+    exit 0
+fi
+
+for c in $@
+do
+    n=`expr index "abcdefghijklmnopqrstuvwxyz" $c`
+    printf "%c: %i\n" $c $n 
+done

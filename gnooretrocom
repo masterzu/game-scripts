@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function usage() {
+cat<<EOT
+Usage: $(basename $0) <nb unites> <prix total> <prix fixé>
+
+Calcul la retrocommission pour un achat avec <prix fixé>
+
+EOT
+}
+
+test $# -ne 3 && { echo "Missing arguments"; usage; exit 1; }
+
+NB=${1?Missing units number}
+PRIXTOTAL=${2?Missing total price}
+PRIX=${3?Missing unit price}
+
+(( prixachat = $PRIXTOTAL / $NB ))
+
+echo "prix d'achat: $prixachat k€"
+
+(( diffprix = $prixachat - $PRIX ))
+(( difftotal = $diffprix * $NB ))
+
+echo "retrocommission: $difftotal k€"
