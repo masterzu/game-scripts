@@ -19,6 +19,12 @@ gnooscale
     
     Découpage d'un intervalle pour la colorisation dans gdocs
 
+gnooaide
+
+    Calcul de simulation d'aides scientifiques chaînée::
+
+        $ gnooaide 1000 2000 | gnooaide 3000
+
 erepublic
 =========
 

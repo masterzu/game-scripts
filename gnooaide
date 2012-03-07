@@ -36,8 +36,10 @@ test -z "$BASE_SCORE" -o -z "$HELPER_SCORE" && {
 }
 
 test $HELPER_SCORE -lt $BASE_SCORE && {
-    echo "E: <helper score> must be superior than the <base score>"
-    exit
+    echo "W: <helper score>(${HELPER_SCORE}) must be superior than the <base score>(${BASE_SCORE})" >&2
+} || {
+
+    echo $(( $BASE_SCORE + ($HELPER_SCORE - $BASE_SCORE)/50 ))
+    echo "Gain(${BASE_SCORE},${HELPER_SCORE}) = +$(( ( $HELPER_SCORE - $BASE_SCORE ) / 50 )) [+$(( ( $HELPER_SCORE - $BASE_SCORE ) * 2 / ${BASE_SCORE} ))%]" >&2
 }
 
-echo $(( $BASE_SCORE + ($HELPER_SCORE-$BASE_SCORE)/50 ))
