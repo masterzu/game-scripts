@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Calculation script to simulate the result of an «aide scientifique»
+
+usage() {
+cat <<EOT
+Usage: $(basename $0) <base score> <helper score> | <helper score>
+
+The first form read yous <base score> and the <helper score> from the parameters
+
+The second forme read the <base score> from the STDIN 
+EOT
+}
+
+test $# == 0 && { usage; exit; }
+
+test $# == 1 -o $# == 2 || {
+    echo "W: Bad arguments number"
+    usage
+    exit 1
+}
+
+if test $# == 1
+then
+    read BASE_SCORE
+    HELPER_SCORE="$1"
+else
+    BASE_SCORE="$1"
+    HELPER_SCORE="$2"
+fi
+
+test -z "$BASE_SCORE" -o -z "$HELPER_SCORE" && {
+    echo "W: Bad arguments"
+    usage
+    exit 1
+}
+
+test $HELPER_SCORE -lt $BASE_SCORE && {
+    echo "E: <helper score> must be superior than the <base score>"
+    exit
+}
+
+echo $(( $BASE_SCORE + ($HELPER_SCORE-$BASE_SCORE)/50 ))
