@@ -19,6 +19,8 @@ PRIX=${3?Missing unit price}
 
 echo "prix d'achat: $prixachat k€"
 
+echo "prix fixé par contrat: $PRIX k€"
+
 (( diffprix = $prixachat - $PRIX ))
 (( difftotal = $diffprix * $NB ))
 
