@@ -1,0 +1,15 @@
+#!/bin/bash
+# 
+# print the current time in WurmOnline Game
+ 
+# Master ZU <master.h2zu@gmail.com>
+# copyright GPL v3
+
+gameurl='http://jenn001.game.wurmonline.com/battles/stats.html'
+# get the terminal width
+width=$(tput cols)
+
+curl --silent $gameurl | grep -A2 'Wurm Time' | html2text -width $width
+
+# vim:set ts=4 sw=4 sta ai spelllang=en:
+

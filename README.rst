@@ -4,6 +4,11 @@ game-scripts
 
 Jouer avec facilité et passivité.
 
+Licence
+====
+
+Tous les scripts sont sous licence GPLv3
+
 gnoodiplo
 =========
 
@@ -35,5 +40,13 @@ erepbattle
 cron-top-p51.sh
 
     Enregistrement automatique des top du régiment tout les matins
+
+wurm online
+====
+
+wurmtime.sh
+
+	Affiche l'heure et la date dans le jeux
+    Voir http://www.wurmpedia.com/index.php/Time_of_Wurm
 
 .. vim: spelllang=fr:
