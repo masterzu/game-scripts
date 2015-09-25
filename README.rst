@@ -44,7 +44,7 @@ cron-top-p51.sh
 wurm online
 ====
 
-wurmtime.sh
+wurmtime
 
 	Affiche l'heure et la date dans le jeux
     Voir http://www.wurmpedia.com/index.php/Time_of_Wurm
